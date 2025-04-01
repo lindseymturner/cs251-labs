@@ -1,0 +1,31 @@
+print("\n\n***  Let's find 6! again, using a loop, but not fully follow-through by writing double-precision loop \n")
+//  Below is the HERA equivalent of this Python program:
+// # assume n is the element of the fibonacci sequence we want:
+// j = 1
+// i = 1
+// while i <= n:
+//   j = j * i
+//   i = i + 1
+
+MOVE(R3, R1) // put "n", the requested element of the fibonacci sequence, into R3, where the old code wants it
+             // other than that, and the use of different label names,
+             // and the omission of the previous file's "SET(R3, 6)",
+             // and the MOVE to put our result into R1 at the end
+             // this is like factorial_6_loop_P1.hera file
+
+// j = 1
+SET(R2, 1)	// R2 will be j
+// i = 1
+SET(R1, 1)   // R1 will be i
+// while i <= R3:
+LABEL(Start_of_FactR1_while)
+CMP(R1,R3)		// We're comparing R1 to six (which is in R3)
+BG(Out_of_FactR1_while)	// We get _out_ of the loop if i > 6, so we use BG (branch if _greater_)
+//   j = j * i
+MUL(R2, R2,R1)
+//   i = i + 1
+INC(R1, 1)
+BR(Start_of_FactR1_while)
+LABEL(Out_of_FactR1_while)
+
+MOVE(R1, R2)  // Put our final answer in R1

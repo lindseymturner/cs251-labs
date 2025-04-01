@@ -1,0 +1,42 @@
+/*
+ *  factorial_6_9_P1_noloop.hera
+ *    Try to compute 6! and 9! in HERA but without a loop. Also, using 1-register precision ... uh-oh, 9! > 32767 :-(
+ *    If C-Lion doesn't let you use the debugger in this file, try setting the file type, as described in
+ *      https://docs.google.com/document/d/1_Hp5vOkFhrvPnAOaYmqShhKOhnxetZApLXjguiiFdbY/edit#bookmark=id.42vg9apyhysr
+ */
+
+
+print("\n***  Let's 6! and 9! as easily as we can, i.e., by straight-line sequences of steps \n")
+
+SET(r1, 1)
+SET(r2, 2)
+MUL(r1, r1, r2)   // r1 = 1*2
+SET(r2, 3)
+MUL(r1, r1, r2)   // r1 = 1*2*3
+SET(r2, 4)
+MUL(r1, r1, r2)   // r1 = 1*2*3*4
+SET(r2, 5)	     // note: since r2 was 4, this could be INC(r2, 1)
+MUL(r1, r1, r2)   // r1 = 1*2*3*4*5
+SET(r2, 6)	     // note: since r2 was 5, this could be INC(r2, 1)
+MUL(r1, r1, r2)   // r1 = 1*2*3*4*5*6
+
+print("6! is ")
+print_reg(r1)
+
+// now, try to find 9! in single precision (starting with 6! in r2)
+
+INC(r2, 1)	// taking advantage of the observation above
+MUL(r1, r1, r2)
+
+INC(r2, 1)
+MUL(r1, r1, r2)
+
+INC(r2, 1)
+MUL(r1, r1, r2)
+
+print("9! computed in single precision is ")
+print_reg(r1)
+
+print("Oops, 9! should be 362880, which doesn't fit in single precision\n")
+print("\n\n***  Maybe we should explore multi-word precision\n")
+

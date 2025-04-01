@@ -1,0 +1,42 @@
+CBON()              // Use single-precision arithmetic
+
+// Input: n is stored in R1
+// Output: Fibonacci(n) is stored in R1
+
+// Base cases:
+CMP(R1, R0)
+BZR(END)            // If n == 0, F(n) = 0
+
+
+SET(R2, 1)          // Set R2 to 1
+CMP(R1, R2)
+BZR(END_ONE)        // If n == 1, F(n) = 1
+
+// Initialize Fibonacci variables
+SET(R3, 0)          // F(0) = 0
+SET(R4, 1)          // F(1) = 1
+SET(R5, 2)          // Counter i = 2
+
+// Loop: Calculate F(i) = F(i-1) + F(i-2)
+LABEL(FIB_LOOP)
+CMP(R5, R1)
+BGR(END)        // If i > n, exit loop
+
+ADD(R6, R3, R4) // F(i) = F(i-1) + F(i-2)
+MOVE(R3, R4)    // F(i-1) = F(i-2)
+MOVE(R4, R6)    // F(i) becomes F(i-1)
+
+INC(R5, 1)      // Increment counter i
+BR(FIB_LOOP)    // Repeat loop
+
+// End: Result is in R1
+LABEL(END)
+MOVE(R1, R4)    // Result in R1 (final F(i) is in R4)
+BR(FINAL)
+
+LABEL(END_ONE)
+SET(R1, 1)      // If n == 1, return 1
+
+LABEL(FINAL)
+
+

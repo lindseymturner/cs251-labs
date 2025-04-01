@@ -1,0 +1,38 @@
+// .CODE:
+0/ e10c    	// SETLO_FOR_SET
+1/ f100    	// SETHI_FOR_SET
+2/ 3160    	// FON
+3/ 3068    	// FON
+4/ b010    	// SUB
+5/ 816    	// BZR
+6/ e201    	// SETLO_FOR_SET
+7/ f200    	// SETHI_FOR_SET
+8/ 3068    	// FON
+9/ b012    	// SUB
+a/ 815    	// BZR
+b/ e300    	// SETLO_FOR_SET
+c/ f300    	// SETHI_FOR_SET
+d/ e401    	// SETLO_FOR_SET
+e/ f400    	// SETHI_FOR_SET
+f/ e502    	// SETLO_FOR_SET
+10/ f500    	// SETHI_FOR_SET
+11/ 3068    	// (matching labels: FIB_LOOP) FON
+12/ b051    	// SUB
+13/ 508    	// BGR
+14/ a634    	// ADD
+15/ 9340    	// OR
+16/ 9460    	// OR
+17/ 3580    	// INC
+18/ eb11    	// SETLO_FOR_SET
+19/ fb00    	// SETHI_FOR_SET
+1a/ 100b    	// BR
+1b/ 9140    	// (matching labels: END) OR
+1c/ eb21    	// SETLO_FOR_SET
+1d/ fb00    	// SETHI_FOR_SET
+1e/ 100b    	// BR
+1f/ e101    	// (matching labels: END_ONE) SETLO_FOR_SET
+20/ f100    	// SETHI_FOR_SET
+21/ 0    	// (matching labels: FINAL) HALT
+// .DATA:
+c000/ c001
+

@@ -1,0 +1,26 @@
+print("\n\n***  Let's find 6! again, using a loop, but not fully follow-through by writing double-precision loop \n")
+//  Below is the HERA equivalent of this Python program:
+// j = 1
+// i = 1
+// while i <= 6:
+//   j = j * i
+//   i = i + 1
+
+// j = 1
+SET(R2, 1)	// R2 will be j
+// i = 1
+SET(R1, 1)   // R1 will be i
+// while i <= 6:
+LABEL(Start_of_Fact_while)
+SET(R3,6)
+CMP(R1,R3)		// We're comparing R1 to six (which is in R3)
+BG(Out_of_Fact_while)	// We get _out_ of the loop if i > 6, so we use BG (branch if _greater_)
+//   j = j * i
+MUL(R2, R2,R1)
+//   i = i + 1
+INC(R1, 1)
+BR(Start_of_Fact_while)
+LABEL(Out_of_Fact_while)
+
+print ("with any luck, R2 now has 6!")
+print_reg(R2)

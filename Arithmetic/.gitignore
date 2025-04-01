@@ -1,0 +1,13 @@
+.settings
+/.idea/
+/.deps/
+/cmake-build-*/
+/Debug/
+*.gch
+*~
+#*#
+.#*
+.DS_Store
+.Trash
+.vscode
+build

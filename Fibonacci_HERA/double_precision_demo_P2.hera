@@ -1,0 +1,28 @@
+
+// double-precision multiplication is beyond the scope of this discussion,
+// but we can try a double-precision add -- first, turn on multi-precision arithmetic:
+CCBOFF()
+// (Note: possibly a better approach would be to require the file that _uses_ this P2 file to do CCBOFF()
+
+
+
+// use r1/r2 as one register pair meaning one number (285234),
+//     r3/r4 as the other (702702)
+// put result in r1/r2
+
+SET(r1, 4)
+SET(r2, 23090)
+
+SET(r3, 10)
+SET(r4, 47342)
+
+COFF()
+ADD(r2, r2, r4)
+ADD(r1, r1, r3) /// uses "carry" from above
+
+print("The double-precision add of 285234+702702 should give us 987936\n")
+print(" That's also 15 * 2**16 + 4896\n")
+print_reg(r1)
+print_reg(r2)
+
+CBON()  // put things back the way we expect for most files
